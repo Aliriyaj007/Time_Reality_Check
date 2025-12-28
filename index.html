@@ -1,370 +1,2529 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Time Reality Check</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⏱️ Time Reality Check</title>
+    <style>
+        /* ===== CSS VARIABLES & THEMES ===== */
+        :root {
+            --transition-speed: 0.3s;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+        /* Theme 1: Light (Default) */
+        [data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #f1f5f9;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --accent-light: #dbeafe;
+            --success: #10b981;
+            --success-light: #d1fae5;
+            --danger: #ef4444;
+            --danger-light: #fee2e2;
+            --warning: #f59e0b;
+            --warning-light: #fef3c7;
+            --border: #e2e8f0;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --gradient-start: #3b82f6;
+            --gradient-end: #8b5cf6;
+        }
 
-<style>
-/* ==================================================
-   FUTURISTIC MINIMAL DESIGN SYSTEM
-================================================== */
-:root{
-  --bg-main:#0b0d12;
-  --bg-panel:#141722;
-  --bg-panel-2:#1b1f2e;
-  --bg-soft:#222742;
+        /* Theme 2: Dark */
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent: #60a5fa;
+            --accent-hover: #3b82f6;
+            --accent-light: #1e3a5f;
+            --success: #34d399;
+            --success-light: #064e3b;
+            --danger: #f87171;
+            --danger-light: #7f1d1d;
+            --warning: #fbbf24;
+            --warning-light: #78350f;
+            --border: #475569;
+            --shadow: rgba(0, 0, 0, 0.3);
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --gradient-start: #60a5fa;
+            --gradient-end: #a78bfa;
+        }
 
-  --text-primary:#e9ebf1;
-  --text-secondary:#a3a8c3;
-  --text-muted:#6c7194;
+        /* Theme 3: Ocean Blue */
+        [data-theme="ocean"] {
+            --bg-primary: #0c4a6e;
+            --bg-secondary: #075985;
+            --bg-tertiary: #0369a1;
+            --text-primary: #f0f9ff;
+            --text-secondary: #bae6fd;
+            --text-muted: #7dd3fc;
+            --accent: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --accent-light: #0c4a6e;
+            --success: #2dd4bf;
+            --success-light: #134e4a;
+            --danger: #fb7185;
+            --danger-light: #881337;
+            --warning: #fcd34d;
+            --warning-light: #713f12;
+            --border: #0284c7;
+            --shadow: rgba(0, 0, 0, 0.3);
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --gradient-start: #06b6d4;
+            --gradient-end: #3b82f6;
+        }
 
-  --accent:#5b7cfa;
-  --accent-glow:rgba(91,124,250,0.35);
-  --success:#22c55e;
-  --danger:#ff5c5c;
+        /* Theme 4: Forest Green */
+        [data-theme="forest"] {
+            --bg-primary: #14532d;
+            --bg-secondary: #166534;
+            --bg-tertiary: #15803d;
+            --text-primary: #f0fdf4;
+            --text-secondary: #bbf7d0;
+            --text-muted: #86efac;
+            --accent: #4ade80;
+            --accent-hover: #22c55e;
+            --accent-light: #14532d;
+            --success: #34d399;
+            --success-light: #064e3b;
+            --danger: #fb7185;
+            --danger-light: #881337;
+            --warning: #fbbf24;
+            --warning-light: #78350f;
+            --border: #22c55e;
+            --shadow: rgba(0, 0, 0, 0.3);
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --gradient-start: #22c55e;
+            --gradient-end: #14b8a6;
+        }
 
-  --radius-lg:18px;
-  --radius:12px;
-}
+        /* Theme 5: Sunset Orange */
+        [data-theme="sunset"] {
+            --bg-primary: #fef7ee;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #ffedd5;
+            --text-primary: #7c2d12;
+            --text-secondary: #c2410c;
+            --text-muted: #ea580c;
+            --accent: #f97316;
+            --accent-hover: #ea580c;
+            --accent-light: #fed7aa;
+            --success: #84cc16;
+            --success-light: #ecfccb;
+            --danger: #dc2626;
+            --danger-light: #fecaca;
+            --warning: #eab308;
+            --warning-light: #fef9c3;
+            --border: #fdba74;
+            --shadow: rgba(124, 45, 18, 0.1);
+            --card-shadow: 0 4px 6px -1px rgba(124, 45, 18, 0.1);
+            --gradient-start: #f97316;
+            --gradient-end: #ef4444;
+        }
 
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Inter,sans-serif;
-  background:radial-gradient(1200px 600px at 20% -10%,#1a1f35 0%,var(--bg-main) 40%);
-  color:var(--text-primary);
-}
+        /* Theme 6: Purple Night */
+        [data-theme="purple"] {
+            --bg-primary: #2e1065;
+            --bg-secondary: #3b0764;
+            --bg-tertiary: #581c87;
+            --text-primary: #faf5ff;
+            --text-secondary: #e9d5ff;
+            --text-muted: #c084fc;
+            --accent: #a855f7;
+            --accent-hover: #9333ea;
+            --accent-light: #3b0764;
+            --success: #4ade80;
+            --success-light: #14532d;
+            --danger: #f87171;
+            --danger-light: #7f1d1d;
+            --warning: #fbbf24;
+            --warning-light: #78350f;
+            --border: #7c3aed;
+            --shadow: rgba(0, 0, 0, 0.4);
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+            --gradient-start: #a855f7;
+            --gradient-end: #ec4899;
+        }
 
-/* ==================================================
-   LAYOUT
-================================================== */
-header{
-  position:sticky;
-  top:0;
-  z-index:10;
-  backdrop-filter:blur(12px);
-  background:rgba(11,13,18,.7);
-  border-bottom:1px solid rgba(255,255,255,.05);
-}
-.header-inner{
-  max-width:1100px;
-  margin:auto;
-  padding:14px 22px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-.brand{
-  display:flex;
-  gap:10px;
-  align-items:center;
-  font-weight:700;
-  letter-spacing:.3px;
-}
-.brand-dot{
-  width:10px;height:10px;border-radius:50%;
-  background:var(--accent);
-  box-shadow:0 0 12px var(--accent-glow);
-}
-.header-actions button{
-  background:none;
-  border:none;
-  color:var(--text-secondary);
-  margin-left:14px;
-  cursor:pointer;
-  font-size:13px;
-}
+        /* Theme 7: High Contrast */
+        [data-theme="contrast"] {
+            --bg-primary: #000000;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #333333;
+            --text-primary: #ffffff;
+            --text-secondary: #e5e5e5;
+            --text-muted: #a3a3a3;
+            --accent: #ffff00;
+            --accent-hover: #e6e600;
+            --accent-light: #333300;
+            --success: #00ff00;
+            --success-light: #003300;
+            --danger: #ff0000;
+            --danger-light: #330000;
+            --warning: #ff9900;
+            --warning-light: #331f00;
+            --border: #ffffff;
+            --shadow: rgba(255, 255, 255, 0.1);
+            --card-shadow: 0 4px 6px -1px rgba(255, 255, 255, 0.1);
+            --gradient-start: #ffff00;
+            --gradient-end: #00ffff;
+        }
 
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:28px 22px 40px;
-}
+        /* ===== RESET & BASE STYLES ===== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-.grid{
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:22px;
-}
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
 
-.card{
-  background:linear-gradient(180deg,var(--bg-panel),var(--bg-panel-2));
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:var(--radius-lg);
-  padding:22px;
-  box-shadow:0 10px 40px rgba(0,0,0,.25);
-}
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            min-height: 100vh;
+        }
 
-.card h3{
-  margin:0 0 14px;
-  font-size:14px;
-  color:var(--text-secondary);
-  text-transform:uppercase;
-  letter-spacing:.12em;
-}
+        /* ===== UTILITY CLASSES ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
 
-label{
-  font-size:12px;
-  color:var(--text-muted);
-}
-input,select{
-  width:100%;
-  padding:12px;
-  margin:6px 0 16px;
-  border-radius:10px;
-  border:1px solid rgba(255,255,255,.08);
-  background:var(--bg-soft);
-  color:var(--text-primary);
-}
+        .hidden {
+            display: none !important;
+        }
 
-button.primary{
-  width:100%;
-  padding:14px;
-  border:none;
-  border-radius:14px;
-  background:linear-gradient(135deg,var(--accent),#8aa2ff);
-  color:#fff;
-  font-weight:600;
-  cursor:pointer;
-  box-shadow:0 0 20px var(--accent-glow);
-}
+        .flex {
+            display: flex;
+        }
 
-.timer{
-  text-align:center;
-  font-family:JetBrains Mono,monospace;
-  font-size:56px;
-  margin:18px 0 8px;
-}
+        .flex-col {
+            flex-direction: column;
+        }
 
-.subtle{
-  font-size:12px;
-  color:var(--text-muted);
-  text-align:center;
-}
+        .items-center {
+            align-items: center;
+        }
 
-.stat-row{
-  display:flex;
-  justify-content:space-between;
-  font-size:14px;
-  margin-bottom:8px;
-}
+        .justify-center {
+            justify-content: center;
+        }
 
-.bias-bar{
-  height:12px;
-  background:rgba(255,255,255,.06);
-  border-radius:10px;
-  overflow:hidden;
-  margin:8px 0 14px;
-}
-.bias-fill{
-  height:100%;
-  background:linear-gradient(90deg,var(--accent),#9db0ff);
-}
+        .justify-between {
+            justify-content: space-between;
+        }
 
-.week-grid{
-  display:grid;
-  grid-template-columns:repeat(7,1fr);
-  gap:8px;
-}
-.day{
-  padding:10px 6px;
-  border-radius:10px;
-  background:rgba(255,255,255,.05);
-  text-align:center;
-  font-size:12px;
-}
+        .gap-1 { gap: 0.5rem; }
+        .gap-2 { gap: 1rem; }
+        .gap-3 { gap: 1.5rem; }
+        .gap-4 { gap: 2rem; }
 
-.history{
-  margin-top:16px;
-  font-size:13px;
-  color:var(--text-secondary);
-}
+        .text-center { text-align: center; }
 
-footer{
-  text-align:center;
-  font-size:12px;
-  color:var(--text-muted);
-  margin:40px 0 10px;
-}
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            text-decoration: none;
+        }
 
-/* ==================================================
-   RESPONSIVE
-================================================== */
-@media(max-width:900px){
-  .grid{grid-template-columns:1fr}
-}
-</style>
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+
+        .btn-secondary {
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--border);
+        }
+
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            filter: brightness(1.1);
+        }
+
+        .btn-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            filter: brightness(1.1);
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+        }
+
+        .btn-lg {
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+        }
+
+        .btn-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            padding: 0;
+            border-radius: 50%;
+        }
+
+        /* ===== CARDS ===== */
+        .card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            transition: all var(--transition-speed);
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px var(--shadow);
+        }
+
+        .card-header {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: all var(--transition-speed);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            font-size: 1.75rem;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all var(--transition-speed);
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent);
+            background-color: var(--accent-light);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ===== LANDING SECTION ===== */
+        .landing {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 5rem;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-tertiary) 100%);
+        }
+
+        .landing-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 2rem 0;
+        }
+
+        .landing-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .landing-text .tagline {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .landing-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .landing-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-illustration {
+            width: 100%;
+            max-width: 500px;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--accent-light), var(--bg-secondary));
+            border-radius: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 2rem;
+            border: 2px solid var(--border);
+        }
+
+        .hero-clock {
+            font-size: 6rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .hero-bars {
+            display: flex;
+            gap: 1rem;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .hero-bar {
+            flex: 1;
+            height: 60px;
+            border-radius: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0.5rem;
+            font-weight: 600;
+            font-size: 0.75rem;
+        }
+
+        .hero-bar.estimate {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .hero-bar.actual {
+            background-color: var(--danger);
+            color: white;
+            height: 100px;
+        }
+
+        /* ===== FEATURES SECTION ===== */
+        .features {
+            padding: 5rem 0;
+            background-color: var(--bg-secondary);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            width: 4rem;
+            height: 4rem;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin: 0 auto 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* ===== APP SECTION ===== */
+        .app-section {
+            padding: 5rem 0;
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .app-main {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Task Input */
+        .task-input-card {
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            font-size: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 0.5rem;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all var(--transition-speed);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-light);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .estimate-slider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .slider {
+            flex: 1;
+            -webkit-appearance: none;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--bg-tertiary);
+            outline: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+            transition: all var(--transition-speed);
+        }
+
+        .slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        .estimate-value {
+            min-width: 80px;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        /* Timer Display */
+        .timer-card {
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .timer-display {
+            font-size: 4rem;
+            font-weight: 800;
+            font-family: 'Courier New', monospace;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+
+        .timer-status {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .timer-status.running {
+            color: var(--success);
+        }
+
+        .timer-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Comparison Display */
+        .comparison-card {
+            padding: 2rem;
+        }
+
+        .comparison-bars {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .comparison-bar-group {
+            flex: 1;
+            text-align: center;
+        }
+
+        .bar-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .bar-container {
+            height: 200px;
+            background-color: var(--bg-tertiary);
+            border-radius: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bar-fill {
+            width: 100%;
+            border-radius: 0.5rem 0.5rem 0 0;
+            transition: height 0.5s ease;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 0.5rem;
+            color: white;
+            font-weight: 700;
+        }
+
+        .bar-fill.estimate-bar {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+        }
+
+        .bar-fill.actual-bar {
+            background: linear-gradient(135deg, var(--success), #059669);
+        }
+
+        .bar-fill.actual-bar.over {
+            background: linear-gradient(135deg, var(--danger), #dc2626);
+        }
+
+        .comparison-summary {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: var(--bg-tertiary);
+            border-radius: 0.75rem;
+            text-align: center;
+        }
+
+        .comparison-verdict {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .comparison-verdict.under {
+            color: var(--danger);
+        }
+
+        .comparison-verdict.over {
+            color: var(--warning);
+        }
+
+        .comparison-verdict.accurate {
+            color: var(--success);
+        }
+
+        .comparison-detail {
+            color: var(--text-secondary);
+        }
+
+        /* App Sidebar */
+        .app-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* History */
+        .history-card {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .history-list {
+            list-style: none;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            transition: background-color var(--transition-speed);
+        }
+
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .history-item:hover {
+            background-color: var(--bg-tertiary);
+        }
+
+        .history-task {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .history-times {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .history-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .history-badge.under {
+            background-color: var(--danger-light);
+            color: var(--danger);
+        }
+
+        .history-badge.over {
+            background-color: var(--warning-light);
+            color: var(--warning);
+        }
+
+        .history-badge.accurate {
+            background-color: var(--success-light);
+            color: var(--success);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Chart */
+        .chart-card {
+            padding: 2rem;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 250px;
+            margin-top: 1rem;
+        }
+
+        .chart-canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .stat-card {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-card-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .stat-card-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        /* ===== SETTINGS PANEL ===== */
+        .settings-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-speed);
+        }
+
+        .settings-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .settings-panel {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background-color: var(--bg-secondary);
+            z-index: 2001;
+            transition: right var(--transition-speed);
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .settings-panel.active {
+            right: 0;
+        }
+
+        .settings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .settings-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .settings-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        .settings-section {
+            margin-bottom: 2rem;
+        }
+
+        .settings-section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .theme-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+
+        .theme-option {
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            text-align: center;
+        }
+
+        .theme-option:hover {
+            border-color: var(--accent);
+        }
+
+        .theme-option.active {
+            border-color: var(--accent);
+            background-color: var(--accent-light);
+        }
+
+        .theme-preview {
+            width: 100%;
+            height: 40px;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .theme-name {
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        /* Theme Previews */
+        .theme-preview-light {
+            background: linear-gradient(90deg, #f8fafc 50%, #3b82f6 50%);
+        }
+
+        .theme-preview-dark {
+            background: linear-gradient(90deg, #0f172a 50%, #60a5fa 50%);
+        }
+
+        .theme-preview-ocean {
+            background: linear-gradient(90deg, #0c4a6e 50%, #38bdf8 50%);
+        }
+
+        .theme-preview-forest {
+            background: linear-gradient(90deg, #14532d 50%, #4ade80 50%);
+        }
+
+        .theme-preview-sunset {
+            background: linear-gradient(90deg, #fef7ee 50%, #f97316 50%);
+        }
+
+        .theme-preview-purple {
+            background: linear-gradient(90deg, #2e1065 50%, #a855f7 50%);
+        }
+
+        .theme-preview-contrast {
+            background: linear-gradient(90deg, #000000 50%, #ffff00 50%);
+        }
+
+        /* Export Options */
+        .export-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 3rem 0;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-credit {
+            color: var(--text-secondary);
+        }
+
+        .footer-credit a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .footer-credit a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+
+        .footer-link:hover {
+            color: var(--accent);
+        }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-speed);
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background-color: var(--bg-secondary);
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: transform var(--transition-speed);
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        /* ===== TOAST NOTIFICATIONS ===== */
+        .toast-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 4000;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .toast {
+            padding: 1rem 1.5rem;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            animation: slideIn 0.3s ease;
+            min-width: 280px;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .toast-icon {
+            font-size: 1.25rem;
+        }
+
+        .toast-message {
+            flex: 1;
+        }
+
+        .toast.success {
+            border-left: 4px solid var(--success);
+        }
+
+        .toast.error {
+            border-left: 4px solid var(--danger);
+        }
+
+        .toast.info {
+            border-left: 4px solid var(--accent);
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1024px) {
+            .landing-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .landing-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .landing-stats {
+                justify-content: center;
+            }
+
+            .hero-illustration {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .app-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-wrap: wrap;
+            }
+
+            .nav {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                padding-top: 1rem;
+            }
+
+            .nav.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .landing-text h1 {
+                font-size: 2rem;
+            }
+
+            .timer-display {
+                font-size: 3rem;
+            }
+
+            .comparison-bars {
+                flex-direction: column;
+            }
+
+            .bar-container {
+                height: 100px;
+                flex-direction: row;
+            }
+
+            .bar-fill {
+                height: 100%;
+                width: 0;
+                border-radius: 0 0.5rem 0.5rem 0;
+                align-items: center;
+                padding: 0 0.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .toast-container {
+                left: 1rem;
+                right: 1rem;
+                bottom: 1rem;
+            }
+
+            .toast {
+                min-width: auto;
+            }
+
+            .settings-panel {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .landing-text h1 {
+                font-size: 1.75rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .timer-display {
+                font-size: 2.5rem;
+            }
+
+            .btn-lg {
+                padding: 0.75rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .theme-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-clock {
+                font-size: 4rem;
+            }
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-tertiary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--text-muted);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-secondary);
+        }
+
+        /* Print Styles */
+        @media print {
+            .header, .settings-overlay, .settings-panel, .toast-container, .btn {
+                display: none !important;
+            }
+
+            body {
+                background: white;
+                color: black;
+            }
+
+            .card {
+                border: 1px solid #ccc;
+                box-shadow: none;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="#" class="logo">
+                <span class="logo-icon">⏱️</span>
+                <span>Time Reality Check</span>
+            </a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+            <nav class="nav" id="mainNav">
+                <a href="#landing" class="nav-link active">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#app" class="nav-link">App</a>
+                <button class="btn btn-secondary btn-sm" id="settingsBtn">⚙️ Settings</button>
+            </nav>
+        </div>
+    </header>
 
-<header>
-  <div class="header-inner">
-    <div class="brand"><span class="brand-dot"></span>Time Reality Check</div>
-    <div class="header-actions">
-      <button onclick="openGuide()">Guide</button>
-      <button onclick="cycleTheme()">Theme</button>
-      <button onclick="exportJSON()">JSON</button>
-      <button onclick="exportCSV()">CSV</button>
-      <button onclick="importData()">Import</button>
+    <!-- Landing Section -->
+    <section class="landing" id="landing">
+        <div class="container">
+            <div class="landing-content">
+                <div class="landing-text">
+                    <h1>Discover the Truth About Your Time</h1>
+                    <p class="tagline">
+                        A brutally honest, offline-first tool that reveals the gap between how long you 
+                        <em>think</em> tasks take and how long they <em>actually</em> take. Stop guessing. 
+                        Start knowing.
+                    </p>
+                    <div class="flex gap-2" style="flex-wrap: wrap; justify-content: center;">
+                        <a href="#app" class="btn btn-primary btn-lg">
+                            🚀 Start Tracking
+                        </a>
+                        <a href="#features" class="btn btn-secondary btn-lg">
+                            📖 Learn More
+                        </a>
+                    </div>
+                    <div class="landing-stats">
+                        <div class="stat-item">
+                            <div class="stat-value" id="totalTasks">0</div>
+                            <div class="stat-label">Tasks Tracked</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="avgBias">0%</div>
+                            <div class="stat-label">Avg Bias</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="totalTime">0m</div>
+                            <div class="stat-label">Time Logged</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="landing-visual">
+                    <div class="hero-illustration">
+                        <div class="hero-clock">⏱️</div>
+                        <div class="hero-bars">
+                            <div class="hero-bar estimate">
+                                <span>Estimate</span>
+                                <span>30min</span>
+                            </div>
+                            <div class="hero-bar actual">
+                                <span>Reality</span>
+                                <span>52min</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Why Time Reality Check?</h2>
+            <p class="section-subtitle">
+                Most productivity tools assume your estimates are correct. 
+                This tool assumes they're wrong — and helps you see by how much.
+            </p>
+            <div class="features-grid">
+                <div class="card feature-card">
+                    <div class="feature-icon">⚖️</div>
+                    <h3 class="feature-title">Estimate vs Actual</h3>
+                    <p class="feature-desc">
+                        Side-by-side comparison of planned time vs real time spent. 
+                        Makes self-deception visible instantly.
+                    </p>
+                </div>
+                <div class="card feature-card">
+                    <div class="feature-icon">⏲️</div>
+                    <h3 class="feature-title">Lightweight Timer</h3>
+                    <p class="feature-desc">
+                        Simple start/stop timer. No background tracking, 
+                        no interruptions. Just what you need.
+                    </p>
+                </div>
+                <div class="card feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3 class="feature-title">Bias Trend Tracking</h3>
+                    <p class="feature-desc">
+                        See if you consistently underestimate, overestimate, 
+                        or improve over time. Patterns matter.
+                    </p>
+                </div>
+                <div class="card feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Visual Feedback</h3>
+                    <p class="feature-desc">
+                        Minimal charts built with vanilla JavaScript. 
+                        No libraries, no visual noise. Just readable truth.
+                    </p>
+                </div>
+                <div class="card feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">100% Private</h3>
+                    <p class="feature-desc">
+                        All data stored locally in your browser. 
+                        Nothing leaves your device. Ever.
+                    </p>
+                </div>
+                <div class="card feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3 class="feature-title">Reset Without Fear</h3>
+                    <p class="feature-desc">
+                        One-click reset encourages honest experimentation. 
+                        No "streak anxiety" here.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Section -->
+    <section class="app-section" id="app">
+        <div class="container">
+            <h2 class="section-title">Track Your Time</h2>
+            <p class="section-subtitle">
+                Enter a task, estimate the time, start the timer, and discover your bias.
+            </p>
+            <div class="app-grid">
+                <div class="app-main">
+                    <!-- Task Input Card -->
+                    <div class="card task-input-card">
+                        <div class="card-header">
+                            <h3 class="card-title">📝 New Task</h3>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="taskName">Task Name</label>
+                            <input 
+                                type="text" 
+                                id="taskName" 
+                                class="form-input" 
+                                placeholder="e.g., Write documentation..."
+                                maxlength="100"
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Estimated Time (minutes)</label>
+                            <div class="estimate-slider">
+                                <input 
+                                    type="range" 
+                                    id="estimateSlider" 
+                                    class="slider" 
+                                    min="1" 
+                                    max="180" 
+                                    value="30"
+                                >
+                                <div class="estimate-value" id="estimateValue">30 min</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" id="startTaskBtn" style="width: 100%;">
+                            ▶️ Start Task
+                        </button>
+                    </div>
+
+                    <!-- Timer Card -->
+                    <div class="card timer-card hidden" id="timerCard">
+                        <div class="card-header">
+                            <h3 class="card-title" id="currentTaskName">Current Task</h3>
+                        </div>
+                        <div class="timer-display" id="timerDisplay">00:00:00</div>
+                        <div class="timer-status" id="timerStatus">Ready to start</div>
+                        <div class="timer-controls">
+                            <button class="btn btn-success" id="startTimerBtn">▶️ Start</button>
+                            <button class="btn btn-warning hidden" id="pauseTimerBtn">⏸️ Pause</button>
+                            <button class="btn btn-danger hidden" id="stopTimerBtn">⏹️ Stop & Save</button>
+                            <button class="btn btn-secondary hidden" id="cancelTimerBtn">✖️ Cancel</button>
+                        </div>
+                    </div>
+
+                    <!-- Comparison Card -->
+                    <div class="card comparison-card hidden" id="comparisonCard">
+                        <div class="card-header">
+                            <h3 class="card-title">📊 Results</h3>
+                        </div>
+                        <div class="comparison-bars">
+                            <div class="comparison-bar-group">
+                                <div class="bar-label">Estimated</div>
+                                <div class="bar-container">
+                                    <div class="bar-fill estimate-bar" id="estimateBar">
+                                        <span id="estimateBarValue">0m</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comparison-bar-group">
+                                <div class="bar-label">Actual</div>
+                                <div class="bar-container">
+                                    <div class="bar-fill actual-bar" id="actualBar">
+                                        <span id="actualBarValue">0m</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comparison-summary">
+                            <div class="comparison-verdict" id="comparisonVerdict">-</div>
+                            <div class="comparison-detail" id="comparisonDetail">Complete a task to see results</div>
+                        </div>
+                        <button class="btn btn-primary" id="newTaskBtn" style="width: 100%; margin-top: 1rem;">
+                            ➕ New Task
+                        </button>
+                    </div>
+                </div>
+
+                <div class="app-sidebar">
+                    <!-- Stats Cards -->
+                    <div class="stats-grid">
+                        <div class="card stat-card">
+                            <div class="stat-card-value" id="statTotalTasks">0</div>
+                            <div class="stat-card-label">Total Tasks</div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-card-value" id="statAvgBias">0%</div>
+                            <div class="stat-card-label">Avg Bias</div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-card-value" id="statUnderCount">0</div>
+                            <div class="stat-card-label">Underestimated</div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-card-value" id="statOverCount">0</div>
+                            <div class="stat-card-label">Overestimated</div>
+                        </div>
+                    </div>
+
+                    <!-- Chart Card -->
+                    <div class="card chart-card">
+                        <div class="card-header">
+                            <h3 class="card-title">📈 Bias Trend</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="biasChart" class="chart-canvas"></canvas>
+                        </div>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: var(--accent);"></div>
+                                <span>Estimate</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: var(--success);"></div>
+                                <span>Actual</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- History Card -->
+                    <div class="card history-card">
+                        <div class="card-header flex justify-between items-center">
+                            <h3 class="card-title">📋 History</h3>
+                            <button class="btn btn-secondary btn-sm" id="clearHistoryBtn">🗑️ Clear</button>
+                        </div>
+                        <ul class="history-list" id="historyList">
+                            <li class="empty-state">
+                                <div class="empty-state-icon">📭</div>
+                                <p>No tasks recorded yet</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-credit">
+                    Made with ❤️ by <a href="https://github.com/Aliriyaj007" target="_blank" rel="noopener">Aliriyaj007</a>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/Aliriyaj007" class="footer-link" target="_blank" rel="noopener">GitHub</a>
+                    <button class="footer-link" id="exportDataBtn" style="background: none; border: none; cursor: pointer; font-size: inherit;">Export Data</button>
+                    <button class="footer-link" id="resetAllBtn" style="background: none; border: none; cursor: pointer; font-size: inherit;">Reset All</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Settings Panel -->
+    <div class="settings-overlay" id="settingsOverlay"></div>
+    <div class="settings-panel" id="settingsPanel">
+        <div class="settings-header">
+            <h2 class="settings-title">⚙️ Settings</h2>
+            <button class="settings-close" id="settingsClose">✕</button>
+        </div>
+
+        <div class="settings-section">
+            <h3 class="settings-section-title">🎨 Theme</h3>
+            <div class="theme-grid">
+                <div class="theme-option active" data-theme="light">
+                    <div class="theme-preview theme-preview-light"></div>
+                    <div class="theme-name">Light</div>
+                </div>
+                <div class="theme-option" data-theme="dark">
+                    <div class="theme-preview theme-preview-dark"></div>
+                    <div class="theme-name">Dark</div>
+                </div>
+                <div class="theme-option" data-theme="ocean">
+                    <div class="theme-preview theme-preview-ocean"></div>
+                    <div class="theme-name">Ocean Blue</div>
+                </div>
+                <div class="theme-option" data-theme="forest">
+                    <div class="theme-preview theme-preview-forest"></div>
+                    <div class="theme-name">Forest Green</div>
+                </div>
+                <div class="theme-option" data-theme="sunset">
+                    <div class="theme-preview theme-preview-sunset"></div>
+                    <div class="theme-name">Sunset Orange</div>
+                </div>
+                <div class="theme-option" data-theme="purple">
+                    <div class="theme-preview theme-preview-purple"></div>
+                    <div class="theme-name">Purple Night</div>
+                </div>
+                <div class="theme-option" data-theme="contrast">
+                    <div class="theme-preview theme-preview-contrast"></div>
+                    <div class="theme-name">High Contrast</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h3 class="settings-section-title">📤 Export Data</h3>
+            <div class="export-options">
+                <button class="btn btn-secondary" id="exportJSON">📄 Export as JSON</button>
+                <button class="btn btn-secondary" id="exportCSV">📊 Export as CSV</button>
+                <button class="btn btn-secondary" id="importData">📥 Import Data</button>
+                <input type="file" id="importFile" accept=".json" style="display: none;">
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h3 class="settings-section-title">⚠️ Danger Zone</h3>
+            <button class="btn btn-danger" id="resetDataBtn" style="width: 100%;">
+                🗑️ Reset All Data
+            </button>
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem; text-align: center;">
+                This will permanently delete all your tracked tasks and statistics.
+            </p>
+        </div>
     </div>
-  </div>
-</header>
 
-<div class="container">
-
-  <div class="grid">
-
-    <!-- LEFT COLUMN -->
-    <div class="card" id="taskCard">
-      <h3>New Session</h3>
-      <label>Task name</label>
-      <input id="taskName" placeholder="e.g. Study Algorithms" />
-
-      <label>Category</label>
-      <select id="category"><option>Study</option><option>Work</option><option>Personal</option><option>Admin</option></select>
-
-      <label>Estimated time (minutes)</label>
-      <input id="estimate" type="number" placeholder="30" />
-
-      <button class="primary" onclick="startTimer()">Start Focus Session</button>
+    <!-- Confirm Modal -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Confirm Action</h3>
+                <button class="modal-close" id="modalClose">✕</button>
+            </div>
+            <p id="modalMessage">Are you sure you want to proceed?</p>
+            <div class="flex gap-2 justify-center" style="margin-top: 1.5rem;">
+                <button class="btn btn-secondary" id="modalCancel">Cancel</button>
+                <button class="btn btn-danger" id="modalConfirm">Confirm</button>
+            </div>
+        </div>
     </div>
 
-    <!-- RIGHT COLUMN -->
-    <div class="card" id="timerCard" style="display:none">
-      <h3>Active Session</h3>
-      <div class="timer" id="timer">00:00</div>
-      <div class="subtle" id="activeTask"></div>
-      <button class="primary" style="background:linear-gradient(135deg,var(--danger),#ff8a8a);margin-top:14px" onclick="stopTimer()">End Session</button>
-    </div>
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
 
-  </div>
+    <script>
+        // ===== APP STATE =====
+        const APP_STATE = {
+            tasks: [],
+            currentTask: null,
+            timer: {
+                interval: null,
+                startTime: null,
+                elapsed: 0,
+                isRunning: false,
+                isPaused: false
+            },
+            theme: 'light'
+        };
 
-  <div class="grid" style="margin-top:22px">
+        // ===== DOM ELEMENTS =====
+        const DOM = {
+            // Header
+            menuToggle: document.getElementById('menuToggle'),
+            mainNav: document.getElementById('mainNav'),
+            settingsBtn: document.getElementById('settingsBtn'),
 
-    <div class="card" id="resultCard">
-      <h3>Reality Check</h3>
-      <div id="resultContent" class="subtle">Complete a session to see results.</div>
-    </div>
+            // Landing Stats
+            totalTasks: document.getElementById('totalTasks'),
+            avgBias: document.getElementById('avgBias'),
+            totalTime: document.getElementById('totalTime'),
 
-    <div class="card" id="biasCard">
-      <h3>Calibration Engine</h3>
-      <div class="subtle">Data builds clarity over time.</div>
-    </div>
+            // Task Input
+            taskName: document.getElementById('taskName'),
+            estimateSlider: document.getElementById('estimateSlider'),
+            estimateValue: document.getElementById('estimateValue'),
+            startTaskBtn: document.getElementById('startTaskBtn'),
 
-  </div>
+            // Timer
+            timerCard: document.getElementById('timerCard'),
+            currentTaskName: document.getElementById('currentTaskName'),
+            timerDisplay: document.getElementById('timerDisplay'),
+            timerStatus: document.getElementById('timerStatus'),
+            startTimerBtn: document.getElementById('startTimerBtn'),
+            pauseTimerBtn: document.getElementById('pauseTimerBtn'),
+            stopTimerBtn: document.getElementById('stopTimerBtn'),
+            cancelTimerBtn: document.getElementById('cancelTimerBtn'),
 
-  <div class="card" style="margin-top:22px">
-    <h3>Weekly Bias Snapshot</h3>
-    <div class="week-grid" id="weekGrid"></div>
-  </div>
+            // Comparison
+            comparisonCard: document.getElementById('comparisonCard'),
+            estimateBar: document.getElementById('estimateBar'),
+            actualBar: document.getElementById('actualBar'),
+            estimateBarValue: document.getElementById('estimateBarValue'),
+            actualBarValue: document.getElementById('actualBarValue'),
+            comparisonVerdict: document.getElementById('comparisonVerdict'),
+            comparisonDetail: document.getElementById('comparisonDetail'),
+            newTaskBtn: document.getElementById('newTaskBtn'),
 
-  <div class="card" style="margin-top:22px">
-    <h3>Recent Sessions</h3>
-    <div class="history" id="history"></div>
-  </div>
+            // Stats
+            statTotalTasks: document.getElementById('statTotalTasks'),
+            statAvgBias: document.getElementById('statAvgBias'),
+            statUnderCount: document.getElementById('statUnderCount'),
+            statOverCount: document.getElementById('statOverCount'),
 
-</div>
+            // Chart
+            biasChart: document.getElementById('biasChart'),
 
-<footer>Offline-first • All data stays on your device • No tracking</footer>
+            // History
+            historyList: document.getElementById('historyList'),
+            clearHistoryBtn: document.getElementById('clearHistoryBtn'),
 
-<div class="modal" id="guide"></div>
+            // Settings
+            settingsOverlay: document.getElementById('settingsOverlay'),
+            settingsPanel: document.getElementById('settingsPanel'),
+            settingsClose: document.getElementById('settingsClose'),
+            themeOptions: document.querySelectorAll('.theme-option'),
+            exportJSON: document.getElementById('exportJSON'),
+            exportCSV: document.getElementById('exportCSV'),
+            importData: document.getElementById('importData'),
+            importFile: document.getElementById('importFile'),
+            resetDataBtn: document.getElementById('resetDataBtn'),
 
-<script>
-/* ==================================================
-   STATE
-================================================== */
-let startTime,interval;
-let history=JSON.parse(localStorage.getItem('trc_history')||'[]');
-let themes=['dark','light','paper','terminal','midnight','slate','contrast'];
-let themeIndex=0;
+            // Footer
+            exportDataBtn: document.getElementById('exportDataBtn'),
+            resetAllBtn: document.getElementById('resetAllBtn'),
 
-/* ==================================================
-   TIMER
-================================================== */
-function startTimer(){
-  if(!taskName.value||!estimate.value)return alert('Fill all fields');
-  startTime=Date.now();
-  activeTask.textContent=`Working on: ${taskName.value}`;
-  taskCard.style.display='none';
-  timerCard.style.display='block';
-  interval=setInterval(updateTimer,1000);
-}
-function updateTimer(){
-  let d=Math.floor((Date.now()-startTime)/1000);
-  timer.textContent=`${String(Math.floor(d/60)).padStart(2,'0')}:${String(d%60).padStart(2,'0')}`;
-}
-function stopTimer(){
-  clearInterval(interval);
-  let actual=Math.max(1,Math.floor((Date.now()-startTime)/60000));
-  let est=Number(estimate.value);
-  history.unshift({task:taskName.value,cat:category.value,est,actual,ts:new Date().toISOString()});
-  localStorage.setItem('trc_history',JSON.stringify(history));
-  taskCard.style.display='block';
-  timerCard.style.display='none';
-  renderResult(est,actual);
-  renderBias();
-  renderWeekly();
-  renderHistory();
-}
+            // Modal
+            confirmModal: document.getElementById('confirmModal'),
+            modalTitle: document.getElementById('modalTitle'),
+            modalMessage: document.getElementById('modalMessage'),
+            modalClose: document.getElementById('modalClose'),
+            modalCancel: document.getElementById('modalCancel'),
+            modalConfirm: document.getElementById('modalConfirm'),
 
-/* ==================================================
-   ANALYTICS
-================================================== */
-function renderResult(est,actual){
-  let diff=actual-est;
-  resultContent.innerHTML=`
-    <div class='stat-row'><span>Estimated</span><span>${est} min</span></div>
-    <div class='stat-row'><span>Actual</span><span>${actual} min</span></div>
-    <div class='stat-row'><strong>Difference</strong><strong style='color:${diff>0?'var(--danger)':'var(--success)'}'>${diff>0?'+':''}${diff} min</strong></div>`;
-}
+            // Toast
+            toastContainer: document.getElementById('toastContainer')
+        };
 
-function renderBias(){
-  if(history.length<3){biasCard.innerHTML='<h3>Calibration Engine</h3><div class="subtle">Not enough data yet.</div>';return}
-  let recent=history.slice(0,7);
-  let sum=0;recent.forEach(h=>sum+=(h.actual-h.est)/h.est);
-  let roll=Math.round(sum/recent.length*100);
-  let byCat={};
-  history.forEach(h=>{byCat[h.cat]=byCat[h.cat]||[];byCat[h.cat].push((h.actual-h.est)/h.est)});
-  let html=`<h3>Calibration Engine</h3><div class='subtle'>Rolling bias: ${roll>0?'Under':'Over'} ~${Math.abs(roll)}%</div><div class='bias-bar'><div class='bias-fill' style='width:${Math.min(100,Math.abs(roll))}%'></div></div>`;
-  for(let c in byCat){
-    let avg=Math.round(byCat[c].reduce((a,b)=>a+b,0)/byCat[c].length*100);
-    let last=history.find(h=>h.cat===c);
-    let next=last?Math.round(last.est*(1+avg/100)):'';
-    html+=`<div class='stat-row'><span>${c}</span><span>Next: ${next} min</span></div>`;
-  }
-  biasCard.innerHTML=html;
-}
+        // ===== UTILITY FUNCTIONS =====
+        function formatTime(seconds) {
+            const hrs = Math.floor(seconds / 3600);
+            const mins = Math.floor((seconds % 3600) / 60);
+            const secs = seconds % 60;
+            return `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
 
-function renderWeekly(){
-  let days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-  let map={};days.forEach(d=>map[d]=[]);
-  history.forEach(h=>{let d=new Date(h.ts).toLocaleDateString('en-US',{weekday:'short'});if(map[d])map[d].push((h.actual-h.est)/h.est)});
-  weekGrid.innerHTML='';
-  days.forEach(d=>{
-    let arr=map[d];
-    if(arr.length===0){weekGrid.innerHTML+=`<div class='day'>${d}<br>-</div>`}
-    else{let avg=Math.round(arr.reduce((a,b)=>a+b,0)/arr.length*100);weekGrid.innerHTML+=`<div class='day'>${d}<br>${avg>0?'+':''}${avg}%</div>`}
-  });
-}
+        function formatMinutes(minutes) {
+            if (minutes < 60) return `${Math.round(minutes)}m`;
+            const hrs = Math.floor(minutes / 60);
+            const mins = Math.round(minutes % 60);
+            return mins > 0 ? `${hrs}h ${mins}m` : `${hrs}h`;
+        }
 
-function renderHistory(){
-  history.innerHTML=history.slice(0,6).map(h=>`${h.task} (${h.cat}) — ${h.est} → ${h.actual}`).join('<br>');
-}
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            
+            const icons = { success: '✅', error: '❌', info: 'ℹ️' };
+            toast.innerHTML = `
+                <span class="toast-icon">${icons[type]}</span>
+                <span class="toast-message">${message}</span>
+            `;
+            
+            DOM.toastContainer.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.animation = 'slideIn 0.3s ease reverse';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
 
-/* ==================================================
-   UTILITIES
-================================================== */
-function cycleTheme(){themeIndex=(themeIndex+1)%themes.length;document.body.dataset.theme=themes[themeIndex]}
-function exportJSON(){download(new Blob([JSON.stringify({history},null,2)],{type:'application/json'}),'time-reality-check.json')}
-function exportCSV(){let rows=['task,category,estimated,actual,timestamp'];history.forEach(h=>rows.push(`${h.task},${h.cat},${h.est},${h.actual},${h.ts}`));download(new Blob([rows.join('\n')],{type:'text/csv'}),'time-reality-check.csv')}
-function importData(){let i=document.createElement('input');i.type='file';i.accept='.json';i.onchange=e=>{let r=new FileReader();r.onload=()=>{let d=JSON.parse(r.result);history=d.history||[];localStorage.setItem('trc_history',JSON.stringify(history));renderBias();renderWeekly();renderHistory()};r.readAsText(e.target.files[0])};i.click()}
-function download(blob,name){let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click()}
-function openGuide(){alert('Estimate → Work → Measure → Calibrate. All data stays on your device.')}
+        function showConfirmModal(title, message, onConfirm) {
+            DOM.modalTitle.textContent = title;
+            DOM.modalMessage.textContent = message;
+            DOM.confirmModal.classList.add('active');
+            
+            const handleConfirm = () => {
+                DOM.confirmModal.classList.remove('active');
+                onConfirm();
+                cleanup();
+            };
+            
+            const handleCancel = () => {
+                DOM.confirmModal.classList.remove('active');
+                cleanup();
+            };
+            
+            const cleanup = () => {
+                DOM.modalConfirm.removeEventListener('click', handleConfirm);
+                DOM.modalCancel.removeEventListener('click', handleCancel);
+                DOM.modalClose.removeEventListener('click', handleCancel);
+            };
+            
+            DOM.modalConfirm.addEventListener('click', handleConfirm);
+            DOM.modalCancel.addEventListener('click', handleCancel);
+            DOM.modalClose.addEventListener('click', handleCancel);
+        }
 
-renderBias();renderWeekly();renderHistory();
-</script>
+        // ===== LOCAL STORAGE =====
+        function saveToStorage() {
+            localStorage.setItem('timeRealityCheck', JSON.stringify({
+                tasks: APP_STATE.tasks,
+                theme: APP_STATE.theme
+            }));
+        }
+
+        function loadFromStorage() {
+            const data = localStorage.getItem('timeRealityCheck');
+            if (data) {
+                const parsed = JSON.parse(data);
+                APP_STATE.tasks = parsed.tasks || [];
+                APP_STATE.theme = parsed.theme || 'light';
+            }
+        }
+
+        // ===== THEME MANAGEMENT =====
+        function setTheme(theme) {
+            APP_STATE.theme = theme;
+            document.documentElement.setAttribute('data-theme', theme);
+            
+            DOM.themeOptions.forEach(option => {
+                option.classList.toggle('active', option.dataset.theme === theme);
+            });
+            
+            saveToStorage();
+            drawChart(); // Redraw chart with new colors
+        }
+
+        // ===== STATS CALCULATION =====
+        function calculateStats() {
+            const tasks = APP_STATE.tasks;
+            
+            if (tasks.length === 0) {
+                return {
+                    totalTasks: 0,
+                    avgBias: 0,
+                    totalTime: 0,
+                    underCount: 0,
+                    overCount: 0,
+                    accurateCount: 0
+                };
+            }
+            
+            let totalBias = 0;
+            let totalTime = 0;
+            let underCount = 0;
+            let overCount = 0;
+            let accurateCount = 0;
+            
+            tasks.forEach(task => {
+                const bias = ((task.actual - task.estimate) / task.estimate) * 100;
+                totalBias += bias;
+                totalTime += task.actual;
+                
+                if (bias > 10) underCount++;
+                else if (bias < -10) overCount++;
+                else accurateCount++;
+            });
+            
+            return {
+                totalTasks: tasks.length,
+                avgBias: Math.round(totalBias / tasks.length),
+                totalTime: Math.round(totalTime),
+                underCount,
+                overCount,
+                accurateCount
+            };
+        }
+
+        function updateStatsDisplay() {
+            const stats = calculateStats();
+            
+            // Landing stats
+            DOM.totalTasks.textContent = stats.totalTasks;
+            DOM.avgBias.textContent = `${stats.avgBias > 0 ? '+' : ''}${stats.avgBias}%`;
+            DOM.totalTime.textContent = formatMinutes(stats.totalTime);
+            
+            // Sidebar stats
+            DOM.statTotalTasks.textContent = stats.totalTasks;
+            DOM.statAvgBias.textContent = `${stats.avgBias > 0 ? '+' : ''}${stats.avgBias}%`;
+            DOM.statUnderCount.textContent = stats.underCount;
+            DOM.statOverCount.textContent = stats.overCount;
+        }
+
+        // ===== HISTORY MANAGEMENT =====
+        function updateHistoryDisplay() {
+            if (APP_STATE.tasks.length === 0) {
+                DOM.historyList.innerHTML = `
+                    <li class="empty-state">
+                        <div class="empty-state-icon">📭</div>
+                        <p>No tasks recorded yet</p>
+                    </li>
+                `;
+                return;
+            }
+            
+            const recentTasks = [...APP_STATE.tasks].reverse().slice(0, 10);
+            
+            DOM.historyList.innerHTML = recentTasks.map(task => {
+                const bias = ((task.actual - task.estimate) / task.estimate) * 100;
+                let badgeClass = 'accurate';
+                let badgeText = 'Accurate';
+                
+                if (bias > 10) {
+                    badgeClass = 'under';
+                    badgeText = `+${Math.round(bias)}%`;
+                } else if (bias < -10) {
+                    badgeClass = 'over';
+                    badgeText = `${Math.round(bias)}%`;
+                }
+                
+                return `
+                    <li class="history-item">
+                        <div>
+                            <div class="history-task">${escapeHtml(task.name)}</div>
+                            <div class="history-times">
+                                Est: ${formatMinutes(task.estimate)} → Act: ${formatMinutes(task.actual)}
+                            </div>
+                        </div>
+                        <span class="history-badge ${badgeClass}">${badgeText}</span>
+                    </li>
+                `;
+            }).join('');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // ===== CHART DRAWING =====
+        function drawChart() {
+            const canvas = DOM.biasChart;
+            const ctx = canvas.getContext('2d');
+            const container = canvas.parentElement;
+            
+            // Set canvas size
+            const dpr = window.devicePixelRatio || 1;
+            const rect = container.getBoundingClientRect();
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            ctx.scale(dpr, dpr);
+            canvas.style.width = rect.width + 'px';
+            canvas.style.height = rect.height + 'px';
+            
+            const width = rect.width;
+            const height = rect.height;
+            const padding = { top: 20, right: 20, bottom: 30, left: 50 };
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, width, height);
+            
+            const tasks = APP_STATE.tasks.slice(-10); // Last 10 tasks
+            
+            if (tasks.length === 0) {
+                ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-muted');
+                ctx.font = '14px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('No data yet', width / 2, height / 2);
+                return;
+            }
+            
+            // Calculate scales
+            const maxValue = Math.max(...tasks.flatMap(t => [t.estimate, t.actual])) * 1.2;
+            const chartWidth = width - padding.left - padding.right;
+            const chartHeight = height - padding.top - padding.bottom;
+            const barWidth = chartWidth / tasks.length * 0.35;
+            const groupWidth = chartWidth / tasks.length;
+            
+            // Get theme colors
+            const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent');
+            const successColor = getComputedStyle(document.documentElement).getPropertyValue('--success');
+            const borderColor = getComputedStyle(document.documentElement).getPropertyValue('--border');
+            const textColor = getComputedStyle(document.documentElement).getPropertyValue('--text-secondary');
+            
+            // Draw grid lines
+            ctx.strokeStyle = borderColor;
+            ctx.lineWidth = 1;
+            for (let i = 0; i <= 4; i++) {
+                const y = padding.top + (chartHeight / 4) * i;
+                ctx.beginPath();
+                ctx.moveTo(padding.left, y);
+                ctx.lineTo(width - padding.right, y);
+                ctx.stroke();
+                
+                // Y-axis labels
+                const value = Math.round(maxValue - (maxValue / 4) * i);
+                ctx.fillStyle = textColor;
+                ctx.font = '11px sans-serif';
+                ctx.textAlign = 'right';
+                ctx.fillText(formatMinutes(value), padding.left - 5, y + 4);
+            }
+            
+            // Draw bars
+            tasks.forEach((task, index) => {
+                const x = padding.left + groupWidth * index + groupWidth / 2;
+                
+                // Estimate bar
+                const estHeight = (task.estimate / maxValue) * chartHeight;
+                ctx.fillStyle = accentColor;
+                ctx.fillRect(x - barWidth - 2, padding.top + chartHeight - estHeight, barWidth, estHeight);
+                
+                // Actual bar
+                const actHeight = (task.actual / maxValue) * chartHeight;
+                ctx.fillStyle = successColor;
+                ctx.fillRect(x + 2, padding.top + chartHeight - actHeight, barWidth, actHeight);
+                
+                // X-axis label
+                ctx.fillStyle = textColor;
+                ctx.font = '10px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(`#${index + 1}`, x, height - 5);
+            });
+        }
+
+        // ===== TIMER FUNCTIONS =====
+        function startTask() {
+            const taskName = DOM.taskName.value.trim();
+            const estimate = parseInt(DOM.estimateSlider.value);
+            
+            if (!taskName) {
+                showToast('Please enter a task name', 'error');
+                DOM.taskName.focus();
+                return;
+            }
+            
+            APP_STATE.currentTask = {
+                name: taskName,
+                estimate: estimate,
+                startedAt: null,
+                actual: 0
+            };
+            
+            // Update UI
+            DOM.currentTaskName.textContent = taskName;
+            DOM.timerCard.classList.remove('hidden');
+            DOM.comparisonCard.classList.add('hidden');
+            DOM.timerDisplay.textContent = '00:00:00';
+            DOM.timerStatus.textContent = `Estimated: ${formatMinutes(estimate)}`;
+            DOM.timerStatus.classList.remove('running');
+            
+            // Reset timer state
+            APP_STATE.timer.elapsed = 0;
+            APP_STATE.timer.isRunning = false;
+            APP_STATE.timer.isPaused = false;
+            
+            updateTimerButtons();
+            
+            // Scroll to timer
+            DOM.timerCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function startTimer() {
+            if (APP_STATE.timer.isRunning) return;
+            
+            APP_STATE.timer.isRunning = true;
+            APP_STATE.timer.isPaused = false;
+            APP_STATE.timer.startTime = Date.now() - (APP_STATE.timer.elapsed * 1000);
+            
+            APP_STATE.timer.interval = setInterval(() => {
+                APP_STATE.timer.elapsed = Math.floor((Date.now() - APP_STATE.timer.startTime) / 1000);
+                DOM.timerDisplay.textContent = formatTime(APP_STATE.timer.elapsed);
+            }, 100);
+            
+            DOM.timerStatus.textContent = 'Timer running...';
+            DOM.timerStatus.classList.add('running');
+            updateTimerButtons();
+        }
+
+        function pauseTimer() {
+            if (!APP_STATE.timer.isRunning) return;
+            
+            clearInterval(APP_STATE.timer.interval);
+            APP_STATE.timer.isRunning = false;
+            APP_STATE.timer.isPaused = true;
+            
+            DOM.timerStatus.textContent = 'Timer paused';
+            DOM.timerStatus.classList.remove('running');
+            updateTimerButtons();
+        }
+
+        function stopTimer() {
+            clearInterval(APP_STATE.timer.interval);
+            
+            const actualMinutes = APP_STATE.timer.elapsed / 60;
+            
+            APP_STATE.currentTask.actual = Math.round(actualMinutes * 10) / 10;
+            APP_STATE.currentTask.completedAt = new Date().toISOString();
+            
+            // Save task
+            APP_STATE.tasks.push({
+                id: Date.now(),
+                name: APP_STATE.currentTask.name,
+                estimate: APP_STATE.currentTask.estimate,
+                actual: APP_STATE.currentTask.actual,
+                completedAt: APP_STATE.currentTask.completedAt
+            });
+            
+            saveToStorage();
+            
+            // Show comparison
+            showComparison();
+            updateStatsDisplay();
+            updateHistoryDisplay();
+            drawChart();
+            
+            // Reset timer state
+            APP_STATE.timer.isRunning = false;
+            APP_STATE.timer.isPaused = false;
+            APP_STATE.timer.elapsed = 0;
+            
+            showToast('Task completed! Check your results.', 'success');
+        }
+
+        function cancelTimer() {
+            showConfirmModal(
+                'Cancel Task',
+                'Are you sure you want to cancel this task? Your time will not be saved.',
+                () => {
+                    clearInterval(APP_STATE.timer.interval);
+                    APP_STATE.timer.isRunning = false;
+                    APP_STATE.timer.isPaused = false;
+                    APP_STATE.timer.elapsed = 0;
+                    APP_STATE.currentTask = null;
+                    
+                    DOM.timerCard.classList.add('hidden');
+                    DOM.taskName.value = '';
+                    
+                    showToast('Task cancelled', 'info');
+                }
+            );
+        }
+
+        function updateTimerButtons() {
+            const { isRunning, isPaused } = APP_STATE.timer;
+            
+            DOM.startTimerBtn.classList.toggle('hidden', isRunning);
+            DOM.pauseTimerBtn.classList.toggle('hidden', !isRunning);
+            DOM.stopTimerBtn.classList.toggle('hidden', !isRunning && !isPaused);
+            DOM.cancelTimerBtn.classList.toggle('hidden', !isRunning && !isPaused && APP_STATE.timer.elapsed === 0);
+            
+            if (isPaused) {
+                DOM.startTimerBtn.textContent = '▶️ Resume';
+                DOM.startTimerBtn.classList.remove('hidden');
+            } else {
+                DOM.startTimerBtn.textContent = '▶️ Start';
+            }
+        }
+
+        function showComparison() {
+            const { estimate, actual } = APP_STATE.currentTask;
+            
+            DOM.timerCard.classList.add('hidden');
+            DOM.comparisonCard.classList.remove('hidden');
+            
+            // Calculate bar heights
+            const maxVal = Math.max(estimate, actual);
+            const estPercent = (estimate / maxVal) * 100;
+            const actPercent = (actual / maxVal) * 100;
+            
+            DOM.estimateBar.style.height = `${estPercent}%`;
+            DOM.actualBar.style.height = `${actPercent}%`;
+            DOM.estimateBarValue.textContent = formatMinutes(estimate);
+            DOM.actualBarValue.textContent = formatMinutes(actual);
+            
+            // Determine verdict
+            const bias = ((actual - estimate) / estimate) * 100;
+            
+            DOM.actualBar.classList.toggle('over', bias > 10);
+            
+            if (bias > 10) {
+                DOM.comparisonVerdict.className = 'comparison-verdict under';
+                DOM.comparisonVerdict.textContent = `Underestimated by ${Math.round(bias)}%`;
+                DOM.comparisonDetail.textContent = `You thought it would take ${formatMinutes(estimate)}, but it took ${formatMinutes(actual)}.`;
+            } else if (bias < -10) {
+                DOM.comparisonVerdict.className = 'comparison-verdict over';
+                DOM.comparisonVerdict.textContent = `Overestimated by ${Math.round(Math.abs(bias))}%`;
+                DOM.comparisonDetail.textContent = `You thought it would take ${formatMinutes(estimate)}, but it only took ${formatMinutes(actual)}.`;
+            } else {
+                DOM.comparisonVerdict.className = 'comparison-verdict accurate';
+                DOM.comparisonVerdict.textContent = `Pretty Accurate! 🎯`;
+                DOM.comparisonDetail.textContent = `Your estimate of ${formatMinutes(estimate)} was very close to the actual ${formatMinutes(actual)}.`;
+            }
+        }
+
+        function newTask() {
+            DOM.comparisonCard.classList.add('hidden');
+            DOM.taskName.value = '';
+            DOM.estimateSlider.value = 30;
+            DOM.estimateValue.textContent = '30 min';
+            APP_STATE.currentTask = null;
+            
+            DOM.taskName.focus();
+        }
+
+        // ===== EXPORT FUNCTIONS =====
+        function exportAsJSON() {
+            const data = {
+                exportedAt: new Date().toISOString(),
+                tasks: APP_STATE.tasks,
+                stats: calculateStats()
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            downloadBlob(blob, `time-reality-check-${Date.now()}.json`);
+            showToast('Data exported as JSON', 'success');
+        }
+
+        function exportAsCSV() {
+            if (APP_STATE.tasks.length === 0) {
+                showToast('No data to export', 'error');
+                return;
+            }
+            
+            const headers = ['Task Name', 'Estimated (min)', 'Actual (min)', 'Bias (%)', 'Completed At'];
+            const rows = APP_STATE.tasks.map(task => {
+                const bias = Math.round(((task.actual - task.estimate) / task.estimate) * 100);
+                return [
+                    `"${task.name.replace(/"/g, '""')}"`,
+                    task.estimate,
+                    task.actual,
+                    bias,
+                    task.completedAt
+                ];
+            });
+            
+            const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+            const blob = new Blob([csv], { type: 'text/csv' });
+            downloadBlob(blob, `time-reality-check-${Date.now()}.csv`);
+            showToast('Data exported as CSV', 'success');
+        }
+
+        function downloadBlob(blob, filename) {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function importData(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    if (data.tasks && Array.isArray(data.tasks)) {
+                        APP_STATE.tasks = [...APP_STATE.tasks, ...data.tasks];
+                        saveToStorage();
+                        updateStatsDisplay();
+                        updateHistoryDisplay();
+                        drawChart();
+                        showToast(`Imported ${data.tasks.length} tasks`, 'success');
+                    } else {
+                        throw new Error('Invalid format');
+                    }
+                } catch (error) {
+                    showToast('Failed to import data. Invalid file format.', 'error');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function resetAllData() {
+            showConfirmModal(
+                'Reset All Data',
+                'This will permanently delete all your tracked tasks and statistics. This action cannot be undone.',
+                () => {
+                    APP_STATE.tasks = [];
+                    saveToStorage();
+                    updateStatsDisplay();
+                    updateHistoryDisplay();
+                    drawChart();
+                    newTask();
+                    showToast('All data has been reset', 'success');
+                }
+            );
+        }
+
+        // ===== EVENT LISTENERS =====
+        function initEventListeners() {
+            // Mobile menu
+            DOM.menuToggle.addEventListener('click', () => {
+                DOM.mainNav.classList.toggle('active');
+            });
+
+            // Settings panel
+            DOM.settingsBtn.addEventListener('click', () => {
+                DOM.settingsOverlay.classList.add('active');
+                DOM.settingsPanel.classList.add('active');
+            });
+
+            DOM.settingsOverlay.addEventListener('click', () => {
+                DOM.settingsOverlay.classList.remove('active');
+                DOM.settingsPanel.classList.remove('active');
+            });
+
+            DOM.settingsClose.addEventListener('click', () => {
+                DOM.settingsOverlay.classList.remove('active');
+                DOM.settingsPanel.classList.remove('active');
+            });
+
+            // Theme options
+            DOM.themeOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    setTheme(option.dataset.theme);
+                });
+            });
+
+            // Estimate slider
+            DOM.estimateSlider.addEventListener('input', () => {
+                DOM.estimateValue.textContent = `${DOM.estimateSlider.value} min`;
+            });
+
+            // Task controls
+            DOM.startTaskBtn.addEventListener('click', startTask);
+            DOM.startTimerBtn.addEventListener('click', startTimer);
+            DOM.pauseTimerBtn.addEventListener('click', pauseTimer);
+            DOM.stopTimerBtn.addEventListener('click', stopTimer);
+            DOM.cancelTimerBtn.addEventListener('click', cancelTimer);
+            DOM.newTaskBtn.addEventListener('click', newTask);
+
+            // History
+            DOM.clearHistoryBtn.addEventListener('click', () => {
+                if (APP_STATE.tasks.length === 0) {
+                    showToast('No history to clear', 'info');
+                    return;
+                }
+                resetAllData();
+            });
+
+            // Export
+            DOM.exportJSON.addEventListener('click', exportAsJSON);
+            DOM.exportCSV.addEventListener('click', exportAsCSV);
+            DOM.exportDataBtn.addEventListener('click', exportAsJSON);
+
+            // Import
+            DOM.importData.addEventListener('click', () => DOM.importFile.click());
+            DOM.importFile.addEventListener('change', (e) => {
+                if (e.target.files[0]) {
+                    importData(e.target.files[0]);
+                    e.target.value = '';
+                }
+            });
+
+            // Reset
+            DOM.resetDataBtn.addEventListener('click', resetAllData);
+            DOM.resetAllBtn.addEventListener('click', resetAllData);
+
+            // Enter key on task input
+            DOM.taskName.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') startTask();
+            });
+
+            // Navigation smooth scroll
+            document.querySelectorAll('.nav-link[href^="#"]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = document.querySelector(link.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                        DOM.mainNav.classList.remove('active');
+                    }
+                });
+            });
+
+            // Resize handler for chart
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(drawChart, 100);
+            });
+
+            // Active nav link on scroll
+            window.addEventListener('scroll', () => {
+                const sections = ['landing', 'features', 'app'];
+                const scrollPos = window.scrollY + 100;
+
+                sections.forEach(id => {
+                    const section = document.getElementById(id);
+                    if (section) {
+                        const top = section.offsetTop;
+                        const height = section.offsetHeight;
+                        const link = document.querySelector(`.nav-link[href="#${id}"]`);
+                        
+                        if (scrollPos >= top && scrollPos < top + height) {
+                            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                            if (link) link.classList.add('active');
+                        }
+                    }
+                });
+            });
+        }
+
+        // ===== INITIALIZATION =====
+        function init() {
+            loadFromStorage();
+            setTheme(APP_STATE.theme);
+            updateStatsDisplay();
+            updateHistoryDisplay();
+            initEventListeners();
+            
+            // Initial chart draw after a small delay for layout
+            setTimeout(drawChart, 100);
+        }
+
+        // Start the app
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
 </body>
 </html>
